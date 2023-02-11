@@ -2,6 +2,7 @@ import sqlite3
 from sqlite3 import Error
 
 db = 'items.db'
+#conexao geral
 def connection():
     try:
         sqlite3.connect(db)
@@ -10,6 +11,7 @@ def connection():
         print(e)
     return conn 
 
+#retorna todos os valores da coluna
 def showValues():
     conn = connection()
     cursor = conn.cursor() 
@@ -17,7 +19,9 @@ def showValues():
     raw = data.fetchall()
     for i in raw:
         print(i)
+    conn.close()
 
+#insere dados na sequencia = id(int), nome(char), quantidade(int), comprar(char)
 def insertAll(a, b, c, d):
     querry = '''insert into items(id, nome, quantidade, comprar) 
                 values(?, ?, ?, ?)''' 
@@ -26,24 +30,64 @@ def insertAll(a, b, c, d):
     cursor = conn.cursor()
     cursor.execute(querry, param)
     conn.commit()
+    conn.close()
 
+#atualiza dados sequencia param1 = coluna; param2 = valor; param3 = id
 def updateData(param1, param2, param3):
     querry = f'update items set {param1} = "{param2}" where id = {param3};'
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry)
     conn.commit()
-    print(querry)
+    conn.close()
 
-#nao serve pra retornar dados, mas para executar
+#nao serve pra retornar dados, mas para executar "PERIGOSO"
 def execute(querry):
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry)
     conn.commit()
+    conn.close()
 
+#deleta dados pela id 
+def delete(param):
+    execute(f"delete from items where id = {param}")
+    conn = connection()
+    conn.close()
 
-updateData(r'nome', "teste3", 3)
-execute('update items set nome = "teste" where id = 1;') 
+#atualiza o id de certo dado aonde param1 = novo id; param2 = id do dado
+def update_id(param1, param2):
+    querry = f'update items set id = "{param1}" where id = {param2};'
+    conn = connection()
+    cursor = conn.cursor()
+    cursor.execute(querry)
+    conn.commit()
+    conn.close()
 
+#atualiza o nome de certo dado aonde param1 = novo nome; param2 = id do dado
+def update_name(param1, param2):
+    querry = f'update items set nome = "{param1}" where id = {param2};'
+    conn = connection()
+    cursor = conn.cursor()
+    cursor.execute(querry)
+    conn.commit()
+    conn.close()
+
+#atualiza a quantidade de certo dado aonde param1 = nova quantidade; param2 = id do dado
+def update_quantd(param1, param2):
+    querry = f'update items set quantidade = "{param1}" where id = {param2};'
+    conn = connection()
+    cursor = conn.cursor()
+    cursor.execute(querry)
+    conn.commit()
+    conn.close()
+
+#atualiza o parametro comprar de certo dado aonde param1 = nova inf; param2 = id do dado
+def update_comprar(param1, param2):
+    querry = f'update items set comprar = "{param1}" where id = {param2};'
+    conn = connection()
+    cursor = conn.cursor()
+    cursor.execute(querry)
+    conn.commit()
+    conn.close()
 
