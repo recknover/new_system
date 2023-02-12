@@ -4,6 +4,13 @@
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
+    <div id="principal">
+        <label> insira o nome :</label>
+        <input id="nome" type="text" placeholder="nome"><br>
+        <label> insira o nome :</label>
+        <input id="numero" type="number" placeholder="numero">
+        <button id="botao" py-click="teste()">submit</button>
+    </div>
     <py-config>
         files = ["items.db", "main.py"]
     </py-config>
