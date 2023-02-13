@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <link rel="stylesheet" type=text/css href="style.css">
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
@@ -9,11 +10,16 @@
         <input id="nome" type="text" placeholder="nome"><br>
         <label> insira o nome :</label>
         <input id="numero" type="number" placeholder="numero">
-        <button id="botao" py-click="teste()">submit</button>
+        <button id="botao1" py-click="return_table_all()">return all</button>
+        <button id="botao1" py-click="return_especifc()">return especifc</button>
+        <button id="botao2" py-click="reset()">reset</button>
     </div>
+    <div id="tabela"></div>
     <py-config>
-        files = ["items.db", "main.py"]
+        packages = ['pandas']
+        [[fetch]]
+        files = ['items.db', 'main.py']
     </py-config>
-    <py-script src="main.py"></py-script>
+    <py-script src="pyhtml.py"></py-script>
 </body>
 </html>

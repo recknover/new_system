@@ -1,3 +1,4 @@
+import pandas as pd
 import sqlite3
 from sqlite3 import Error
 
@@ -91,3 +92,12 @@ def update_comprar(param1, param2):
     conn.commit()
     conn.close()
 
+def returnPd():
+    conn = connection()
+    df = pd.read_sql_query('select * from items', conn)
+    return df
+
+def return_x(id):
+    conn = connection()
+    df = pd.read_sql_query(f'select * from items where id = {id}', conn)
+    return df
