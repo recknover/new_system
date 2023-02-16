@@ -17,3 +17,19 @@ def return_especifc():
     div = Element("tabela")
     div.element.innerHTML = f"<br> {data} <br>"
     
+def getValues():
+    id = Element("id").element.valueAsNumber
+    nome = Element("nome").element.value
+    valor = Element("valor").element.valueAsNumber
+    data_ins = Element("data_insert").element.valueAsNumber
+    tipo = Element("tipo").element.value
+    raw = [id, nome, valor, data_ins, tipo]
+    print(raw)
+    return raw
+
+def execute():
+    querry = Element("executar").value
+    sql.execute(querry)
+    
+
+    

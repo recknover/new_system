@@ -6,15 +6,34 @@
 </head>
 <body>
     <div id="principal">
+        <!-- id -->
+        <label> insira a id :</label>
+        <input id="id" type="number" placeholder="id"><br>
+        <!-- nome -->
         <label> insira o nome :</label>
         <input id="nome" type="text" placeholder="nome"><br>
-        <label> insira o nome :</label>
-        <input id="numero" type="number" placeholder="numero">
+        <!-- valor -->
+        <label> insira o valor :</label>
+        <input id="valor" type="number" placeholder="valor"><br>
+        <!-- data_insert -->
+        <label> insira a data :</label>
+        <input id="data_insert" type="date" placeholder="data"><br>
+        <!-- tipo -->
+        <label> insira o tipo :</label>
+        <input id="tipo" type="text" placeholder="tipo"><br>
+        <!-- botoes -->
         <button id="botao1" py-click="return_table_all()">return all</button>
-        <button id="botao1" py-click="return_especifc()">return especifc</button>
-        <button id="botao2" py-click="reset()">reset</button>
+        <button id="botao2" py-click="return_especifc()">return especifc</button>
+        <button id="botao3" py-click="reset()">reset</button>
+        <button id="botao4" py-click="getValues()">submit</button>
     </div>
     <div id="tabela"></div>
+    <br><br><br>
+    <div id="console">
+        <label> insira a data :</label>
+        <input id="executar" type="text" placeholder="querry"><br>  
+        <button id="botao5" py-click="execute()">submit</button> 
+    </div>
     <py-config>
         packages = ['pandas']
         [[fetch]]
