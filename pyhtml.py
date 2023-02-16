@@ -31,5 +31,6 @@ def execute():
     querry = Element("executar").value
     sql.execute(querry)
     
-
-    
+'''def insertData():
+    sql.insertAll()
+'''
