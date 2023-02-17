@@ -1,6 +1,33 @@
 body{
-    margin: 5px ;
-    padding: 5px;
-    border: 1px solid red;
+    position: relative;
+    margin: 0px;
+}
 
+#teste{
+    top: 0px;
+    display: block;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background-color: black;
+    height: 50px;
+}
+
+#principal{
+    position: relative;
+    top: 70px;
+    border: 1px red solid;
+    padding: 5px;
+    display: inline-block;
+    margin: 5px;
+
+}
+
+#console{
+    border: 1px red solid;
+
+}
+
+.hidden{
+    display: hidden;
 }

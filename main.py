@@ -23,16 +23,16 @@ def showValues():
     conn.close()
 
 #insere dados na sequencia = id(int), nome(char), quantidade(int), comprar(char)
-def insertAll(a, b, c, d):
-    id = ''
-    nome = '' 
-    valor = ''
-    data = ''
-    tipo = ''
+def insertAll(a, b, c, d, e):
+    id = 'id'
+    nome = 'nome'
+    valor = 'valor'
+    data = 'data'
+    tipo = 'tipo'
     table_principal = [id, nome, valor, data, tipo]
-    querry = f'''insert into items({table_principal[0]}, {table_principal[0]}, {table_principal[0]}, {table_principal[0],}, ) 
-                values(?, ?, ?, ?)''' 
-    param = a, b, c, d
+    querry = f'''insert into items({table_principal[0]}, {table_principal[1]}, {table_principal[2]}, {table_principal[3]}, {table_principal[4]}) 
+                values(?, ?, ?, ?, ?)''' 
+    param = a, b, c, d, e
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry, param)

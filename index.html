@@ -5,6 +5,11 @@
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
+    <header>
+        <div id="teste">
+            teste
+        </div>
+    </header>
     <div id="principal">
         <!-- id -->
         <label> insira a id :</label>
@@ -26,14 +31,17 @@
         <button id="botao2" py-click="return_especifc()">return especifc</button>
         <button id="botao3" py-click="reset()">reset</button>
         <button id="botao4" py-click="getValues()">submit</button>
+        <button id="botao5" py-click="insertData()">insertData</button>
     </div>
     <div id="tabela"></div>
     <br><br><br>
+    <!--
     <div id="console">
-        <label> insira a data :</label>
+        <label> insira o comando :</label>
         <input id="executar" type="text" placeholder="querry"><br>  
         <button id="botao5" py-click="execute()">submit</button> 
     </div>
+    -->
     <py-config>
         packages = ['pandas']
         [[fetch]]

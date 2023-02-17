@@ -11,7 +11,7 @@ def reset():
     div.element.innerHTML = "<div></div>"
 
 def return_especifc():
-    id = Element("numero").element.valueAsNumber
+    id = Element("id").element.valueAsNumber
     raw = sql.return_x(id)
     data = raw.to_html(index=0, border=0)
     div = Element("tabela")
@@ -31,6 +31,7 @@ def execute():
     querry = Element("executar").value
     sql.execute(querry)
     
-'''def insertData():
-    sql.insertAll()
-'''
+def insertData():
+    raw = getValues()
+    sql.insertAll(raw[0], raw[1], raw[2], raw[3], raw[4])
+    
