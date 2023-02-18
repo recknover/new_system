@@ -3,24 +3,22 @@ body{
     margin: 0px;
 }
 
-#teste{
+#nav-bar{
     top: 0px;
     display: block;
     width: 100%;
-    position: absolute;
     top: 0px;
     background-color: black;
-    height: 50px;
+    height: 100px;
+    margin-bottom: 20px;
 }
 
 #principal{
-    position: relative;
     top: 70px;
     border: 1px red solid;
     padding: 5px;
-    display: inline-block;
+    display: block;
     margin: 5px;
-
 }
 
 #console{
@@ -28,6 +26,17 @@ body{
 
 }
 
-.hidden{
-    display: hidden;
+.items li{
+    align-items: center;
+    display: inline-block;
+    justify-content: center;
+    padding: 10px;
+    position: relative;
+    left: 20%;
+}
+
+.items a{
+    text-decoration: none;
+    color: white;
+
 }
