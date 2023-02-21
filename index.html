@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type=text/css href="style.css">
+    <link rel="stylesheet" type=text/css href="style/style.css">
     <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css"/>
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     <title>principal</title>
@@ -9,13 +9,12 @@
     <header>
         <div id="nav-bar">
             <ul class="items">
-                <li><a href="visualizacao.html"> principal </a></li>
-                <li><a href="insercao.html"> insercao </a></li>
-                <li><a href="remocao.html"> remocao </a></li>
-                <li><a href="visualizacao.html"> visualizacao de dados </a></li>
-                <li><a href="atualizacao.html"> atualizacao </a></li>
-                <li><a href="debug.html"> debug </a></li>
-    
+                <li><a href="index.html"> principal </a></li>
+                <li><a href="navegation/insercao.html"> insercao </a></li>
+                <li><a href="/navegation/remocao.html"> remocao </a></li>
+                <li><a href="/navegation/visualizacao.html"> visualizacao de dados </a></li>
+                <li><a href="/navegation/atualizacao.html"> atualizacao </a></li>
+                <li><a href="/navegation/debug.html"> debug </a></li>
             </ul>
         </div>
     </header>
@@ -41,21 +40,26 @@
         <button id="botao3" py-click="reset()">reset</button>
         <button id="botao4" py-click="getValues()">submit</button>
         <button id="botao5" py-click="insertData()">insertData</button>
+        <button id="botao5" py-click="salvar()">salvar banco</button>
     </div>
     <div id="tabela"></div>
     <br><br><br>
-    <!--
     <div id="console">
         <label> insira o comando :</label>
         <input id="executar" type="text" placeholder="querry"><br>  
         <button id="botao5" py-click="execute()">submit</button> 
     </div>
-    -->
     <py-config>
         packages = ['pandas']
+
         [[fetch]]
-        files = ['items.db', 'main.py']
+        from = '/scripts'
+        files = ['main.py']
+
+        [[fetch]]
+        from = '/db'
+        files = ['items.db']
     </py-config>
-    <py-script src="pyhtml.py"></py-script>
+    <py-script src="scripts/pyhtml.py"></py-script>
 </body>
 </html>

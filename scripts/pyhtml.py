@@ -24,7 +24,6 @@ def getValues():
     data_ins = Element("data_insert").element.valueAsNumber
     tipo = Element("tipo").element.value
     raw = [id, nome, valor, data_ins, tipo]
-    print(raw)
     return raw
 
 def execute():
@@ -35,3 +34,7 @@ def insertData():
     raw = getValues()
     sql.insertAll(raw[0], raw[1], raw[2], raw[3], raw[4])
     
+def salvar():
+    conn = sql.connection()
+    conn.commit()
+    conn.close()

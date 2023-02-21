@@ -1,16 +1,40 @@
-import pandas as pd
+#import pandas as pd
 import sqlite3
 from sqlite3 import Error
 
-db = 'items.db'
+
+path = "../db/items.db"
+
 #conexao geral
-def connection():
+def connection(): 
     try:
-        sqlite3.connect(db)
-        conn = sqlite3.connect(db)
+        sqlite3.connect(path)
+        conn = sqlite3.connect(path)
     except Error as e:
         print(e)
     return conn 
+
+#retorna nome de tabelas
+def return_tables():
+    x = connection()
+    cursor = x.cursor()
+    querry = "SELECT name FROM sqlite_master WHERE type='table';"
+    x = cursor.execute(querry)
+    data = x.fetchall()
+    return data[0]
+    
+#retorna esquema de tables
+def return_schema():
+    tn = return_tables()
+    table = tn[0]
+    x = rf"PRAGMA table_info('{table}')"
+    conn = connection()
+    cursor = conn.cursor()
+    y = cursor.execute(x)
+    ls = []
+    for i in y:
+        ls.append(i[1])
+    return ls
 
 #retorna todos os valores da coluna
 def showValues():
@@ -24,20 +48,18 @@ def showValues():
 
 #insere dados na sequencia = id(int), nome(char), quantidade(int), comprar(char)
 def insertAll(a, b, c, d, e):
-    id = 'id'
-    nome = 'nome'
-    valor = 'valor'
-    data = 'data'
-    tipo = 'tipo'
-    table_principal = [id, nome, valor, data, tipo]
+    table_principal = return_schema()
     querry = f'''insert into items({table_principal[0]}, {table_principal[1]}, {table_principal[2]}, {table_principal[3]}, {table_principal[4]}) 
                 values(?, ?, ?, ?, ?)''' 
     param = a, b, c, d, e
+    print(querry)
+    '''
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry, param)
     conn.commit()
     conn.close()
+    '''
 
 #atualiza dados sequencia param1 = coluna; param2 = valor; param3 = id
 def updateData(param1, param2, param3):
@@ -107,3 +129,8 @@ def return_x(id):
     conn = connection()
     df = pd.read_sql_query(f'select * from items where id = {id}', conn)
     return df
+
+
+x = return_schema()
+print(x)
+insertAll(x,x,x,x,x)
