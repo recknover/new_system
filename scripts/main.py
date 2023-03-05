@@ -1,9 +1,10 @@
-#import pandas as pd
+import pandas as pd
 import sqlite3
+import os
 from sqlite3 import Error
 
+path = 'items.db'
 
-path = "../db/items.db"
 
 #conexao geral
 def connection(): 
@@ -11,7 +12,7 @@ def connection():
         sqlite3.connect(path)
         conn = sqlite3.connect(path)
     except Error as e:
-        print(e)
+        print(f'{e}, error in connection')
     return conn 
 
 #retorna nome de tabelas
@@ -38,9 +39,10 @@ def return_schema():
 
 #retorna todos os valores da coluna
 def showValues():
+    table = return_tables()
     conn = connection()
     cursor = conn.cursor() 
-    data = cursor.execute(r'select * from items;')
+    data = cursor.execute(fr'select * from {table};')
     raw = data.fetchall()
     for i in raw:
         print(i)
@@ -48,22 +50,22 @@ def showValues():
 
 #insere dados na sequencia = id(int), nome(char), quantidade(int), comprar(char)
 def insertAll(a, b, c, d, e):
+    table = return_tables()
     table_principal = return_schema()
-    querry = f'''insert into items({table_principal[0]}, {table_principal[1]}, {table_principal[2]}, {table_principal[3]}, {table_principal[4]}) 
+    querry = f'''insert into {table}({table_principal[0]}, {table_principal[1]}, {table_principal[2]}, {table_principal[3]}, {table_principal[4]}) 
                 values(?, ?, ?, ?, ?)''' 
     param = a, b, c, d, e
     print(querry)
-    '''
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry, param)
     conn.commit()
     conn.close()
-    '''
 
 #atualiza dados sequencia param1 = coluna; param2 = valor; param3 = id
 def updateData(param1, param2, param3):
-    querry = f'update items set {param1} = "{param2}" where id = {param3};'
+    table = return_tables()
+    querry = f'update {table} set {param1} = "{param2}" where id = {param3};'
     conn = connection()
     cursor = conn.cursor()
     cursor.execute(querry)
@@ -122,15 +124,25 @@ def update_comprar(param1, param2):
 
 def returnPd():
     conn = connection()
-    df = pd.read_sql_query('select * from items', conn)
+    table = return_tables()
+    df = pd.read_sql_query('select * from {table}', conn)
     return df
 
 def return_x(id):
+    table = return_tables()
     conn = connection()
-    df = pd.read_sql_query(f'select * from items where id = {id}', conn)
+    df = pd.read_sql_query(f'select * from {table} where id = {id}', conn)
     return df
 
-
-x = return_schema()
-print(x)
-insertAll(x,x,x,x,x)
+def insert_especift(a):
+    table = return_tables()
+    insert_schema = return_schema()
+    querry = f'''insert into {table}({insert_schema[0]}) 
+                values(?)''' 
+    param = a 
+    print(querry)
+    conn = connection()
+    cursor = conn.cursor()
+    cursor.execute(querry, param)
+    conn.commit()
+    conn.close()

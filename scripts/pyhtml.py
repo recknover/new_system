@@ -38,3 +38,10 @@ def salvar():
     conn = sql.connection()
     conn.commit()
     conn.close()
+
+def create_input():
+    html = '''<label>teste</label>'''
+    principal = Element("insersoes")
+    principal.element.innerHTML = html
+
+    
